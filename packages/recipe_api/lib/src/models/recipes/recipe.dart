@@ -28,7 +28,7 @@ class Recipe extends Equatable {
   factory Recipe.fromJson(JsonMap data) => _$RecipeFromJson(data);
 
   /// Helper function that creates a [Recipe] from [RecipeDto]
-  factory Recipe.fromDTO(RecipeDto recipeDto) {
+  factory Recipe.fromDto(RecipeDto recipeDto) {
     final tags = recipeDto.strTags.split(',');
     final instructions = recipeDto.strInstructions.split('\r\n');
 

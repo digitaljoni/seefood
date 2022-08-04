@@ -20,9 +20,12 @@ class RecipesDto {
   factory RecipesDto.fromJson(JsonMap data) => _$RecipesDtoFromJson(data);
 
   /// list of recipes
-  @JsonKey(name: 'meals')
+  @JsonKey(name: 'meals', defaultValue: [])
   final List<RecipeDto> recipes;
 
   /// Creates a [JsonMap] from a [RecipesDto]
   JsonMap toJson() => _$RecipesDtoToJson(this);
+
+  /// Return the first recipe in the list
+  RecipeDto get first => recipes.isNotEmpty ? recipes.first : RecipeDto.empty;
 }

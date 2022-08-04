@@ -23,7 +23,7 @@ class Recipes extends Equatable {
   /// Creates a [Recipes] from [RecipesDto]
   factory Recipes.fromDto(RecipesDto recipesDto) {
     return Recipes(
-      recipes: recipesDto.recipes.map(Recipe.fromDTO).toList(),
+      recipes: recipesDto.recipes.map(Recipe.fromDto).toList(),
     );
   }
 
