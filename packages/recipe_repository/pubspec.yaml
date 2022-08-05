@@ -1,0 +1,20 @@
+name: recipe_repository
+description: Recipe Repository
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mem_cache:
+    path: ../mem_cache
+  recipe_api:
+    path: ../recipe_api
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^3.0.1
