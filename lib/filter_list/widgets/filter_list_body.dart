@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seefood/common/common.dart';
 import 'package:seefood/filter_list/cubit/cubit.dart';
+import 'package:seefood/recipe_list/recipe_list.dart';
 
 /// {@template filter_list_body}
 /// Body of the FilterListPage.
@@ -27,9 +28,13 @@ class FilterListBody extends StatelessWidget {
         return ListView.builder(
           itemCount: filters.count,
           itemBuilder: (context, index) {
+            final filter = filtersList[index];
             return ListTile(
+              onTap: () => Navigator.of(context).push(
+                RecipeListPage.route(filter: filter),
+              ),
               title: Text(
-                filtersList[index].name,
+                filter.name,
                 style: Theme.of(context).textTheme.headline2,
               ),
             );

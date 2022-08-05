@@ -25,7 +25,7 @@ class FilterListPage extends StatelessWidget {
         recipeRepository: context.read<RecipeRepository>(),
       )..getFilters(),
       child: Scaffold(
-        appBar: AppBar(title: Text(filterType.name.titleCase())),
+        appBar: AppBar(title: Text('Filter By ${filterType.name.titleCase()}')),
         body: const FilterListView(),
       ),
     );

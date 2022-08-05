@@ -46,4 +46,13 @@ class Recipes extends Equatable {
 
   /// Creates a [JsonMap] from a [Recipes]
   JsonMap toJson() => _$RecipesToJson(this);
+
+  /// Create an empty [Recipes]
+  static const Recipes empty = Recipes(recipes: []);
+
+  /// Check if object is empty
+  bool get isEmpty => this == empty;
+
+  /// return length of recipe list
+  int get count => recipes.length;
 }

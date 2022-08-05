@@ -70,6 +70,9 @@ class Filters extends Equatable {
     filterType: FilterType.area,
   );
 
+  /// Check if object is empty
+  bool get isEmpty => this == empty;
+
   /// return length of Filter list
   int get count => filters.length;
 }
