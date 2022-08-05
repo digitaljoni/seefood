@@ -7,13 +7,17 @@ class AppTheme {
   static const secondaryColor = Color.fromRGBO(242, 207, 22, 1);
   static const textColors = Colors.white;
 
-  static const bottomAppBarColor = Color.fromRGBO(1, 5, 16, 1);
+  static const appBarColor = Color.fromRGBO(1, 5, 16, 1);
 
   static const tagColor = Color.fromRGBO(236, 155, 62, 0.2);
 
   static final defaultThemeData = ThemeData.dark().copyWith(
     scaffoldBackgroundColor: mobileBackgroundColor,
     primaryColor: primaryColor,
+    appBarTheme: ThemeData.dark().appBarTheme.copyWith(
+          backgroundColor: appBarColor,
+        ),
+    bottomAppBarColor: appBarColor,
     textTheme: const TextTheme(
       bodyText1: TextStyle(
         fontSize: 13,

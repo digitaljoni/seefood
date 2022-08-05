@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_api/recipe_api.dart';
+import 'package:seefood/filter_list/filter_list.dart';
 import 'package:seefood/home/cubit/cubit.dart';
 import 'package:seefood/home/home.dart';
 
@@ -37,9 +38,15 @@ class HomeView extends StatelessWidget {
         context.select((HomeCubit cubit) => cubit.state.filterType);
 
     return Scaffold(
-      body: TestWidget(filterType: selectedFilterType),
+      body: IndexedStack(
+        index: selectedFilterType.index,
+        children: FilterType.values
+            .map(
+              (filterType) => FilterListPage(filterType: filterType),
+            )
+            .toList(),
+      ),
       bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -62,33 +69,6 @@ class HomeView extends StatelessWidget {
               text: FilterType.ingredient.name,
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class TestWidget extends StatelessWidget {
-  const TestWidget({
-    super.key,
-    required this.filterType,
-  });
-
-  final FilterType filterType;
-  static const colorMap = {
-    FilterType.area: Colors.red,
-    FilterType.category: Colors.blue,
-    FilterType.ingredient: Colors.orange,
-  };
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: colorMap[filterType],
-      child: Center(
-        child: Text(
-          filterType.name,
         ),
       ),
     );

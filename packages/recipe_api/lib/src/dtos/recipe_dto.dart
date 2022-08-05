@@ -23,6 +23,7 @@ class RecipeDto {
     required this.strMealThumb,
     required this.strTags,
     required this.strYoutube,
+    required this.strIngredient,
     required this.strIngredient1,
     required this.strIngredient2,
     required this.strIngredient3,
@@ -90,6 +91,8 @@ class RecipeDto {
   final String strTags;
   @JsonKey(defaultValue: '')
   final String strYoutube;
+  @JsonKey(defaultValue: '')
+  final String strIngredient;
   @JsonKey(defaultValue: '')
   final String strIngredient1;
   @JsonKey(defaultValue: '')
@@ -193,6 +196,7 @@ class RecipeDto {
     strMealThumb: '',
     strTags: '',
     strYoutube: '',
+    strIngredient: '',
     strIngredient1: '',
     strIngredient2: '',
     strIngredient3: '',

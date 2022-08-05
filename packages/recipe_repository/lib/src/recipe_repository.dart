@@ -19,6 +19,8 @@ class RecipeRepository {
   final _keyRecipesPrefix = '_recipes_';
   final _keyRecipeDetailsPrefix = '_recipe_';
 
+  final _keyFilters = '_filters_';
+
   /// Fetch [Categories] from cache or RecipeApi
   Future<Categories> fetchCategories() async {
     final cachedCategories = _cache.read<Categories>(key: _keyCategories);
@@ -31,6 +33,24 @@ class RecipeRepository {
       final categories = await _recipeApi.fetchCategories();
       _cache.write<Categories>(key: _keyCategories, value: categories);
       return categories;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Fetch [Filters] from cache or RecipeApi
+  Future<Filters> fetchFilters(FilterType filterType) async {
+    final _key = '$_keyFilters${filterType.queryField}';
+    final cachedFilters = _cache.read<Filters>(key: _key);
+
+    if (cachedFilters != null) {
+      return cachedFilters;
+    }
+
+    try {
+      final filters = await _recipeApi.fetchFilters(filterType);
+      _cache.write<Filters>(key: _key, value: filters);
+      return filters;
     } catch (e) {
       rethrow;
     }

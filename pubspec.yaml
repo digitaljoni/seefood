@@ -14,6 +14,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  recipe_api:
+    path: packages/recipe_api
+  recipe_repository:
+    path: packages/recipe_repository
 
 dev_dependencies:
   bloc_test: ^9.0.3

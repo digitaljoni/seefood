@@ -5,6 +5,9 @@ import 'package:recipe_api/src/dtos/recipes_dto.dart';
 /// Thrown Exception if categories  fetch has failed
 class CategoriesFetchFailure implements Exception {}
 
+/// Thrown Exception if filters  fetch has failed
+class FiltersFetchFailure implements Exception {}
+
 /// Thrown Exception if recipes fetch has failed
 class RecipesFetchFailure implements Exception {}
 
@@ -42,6 +45,21 @@ class RecipeApi {
     }
     final dto = RecipesDto.fromJson(response.data as Map<String, dynamic>);
     return Categories.fromDto(dto);
+  }
+
+  /// Fetch [Filters] from API
+  Future<Filters> fetchFilters(FilterType filterType) async {
+    final response = await _dioClient.get<dynamic>(
+      '/list.php',
+      queryParameters: {
+        filterType.queryField: 'list',
+      },
+    );
+    if (response.statusCode != 200) {
+      throw CategoriesFetchFailure();
+    }
+    final dto = RecipesDto.fromJson(response.data as Map<String, dynamic>);
+    return Filters.fromDto(dto, filterType);
   }
 
   /// Fetch [Recipes] from API based on Filter

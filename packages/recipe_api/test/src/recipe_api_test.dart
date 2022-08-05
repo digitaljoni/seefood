@@ -90,6 +90,50 @@ void main() {
       });
     });
 
+    group('fetchFilters', () {
+      const filterType = FilterType.category;
+
+      test('makes correct http request', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.data).thenReturn('[]');
+
+        try {
+          await recipeApi.fetchFilters(filterType);
+        } catch (_) {}
+        verify(
+          () => dioClient.get(
+            '/list.php',
+            queryParameters: {
+              filterType.queryField: 'list',
+            },
+          ),
+        ).called(1);
+      });
+
+      test('returns Filters on valid response', () async {
+        final response = MockResponse();
+
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.data)
+            .thenReturn(jsonDecode(sampleCategoriesJsonString));
+        when(
+          () => dioClient.get(
+            any(),
+            queryParameters: {
+              filterType.queryField: 'list',
+            },
+          ),
+        ).thenAnswer((_) async => response);
+        final actual = await recipeApi.fetchFilters(filterType);
+        expect(
+          actual,
+          isA<Filters>()
+              .having((f) => f.filters, 'filters list', isA<List<Filter>>()),
+        );
+      });
+    });
+
     group('fetchRecipesByFilter', () {
       const mockQuery = 'MockQuery';
       const filterType = FilterType.category;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_api/recipe_api.dart';
+import 'package:seefood/common/common.dart';
 import 'package:seefood/config/config.dart';
 import 'package:seefood/home/cubit/cubit.dart';
 
@@ -40,7 +41,7 @@ class HomeTabButton extends StatelessWidget {
               color: menuColor,
             ),
             Text(
-              text,
+              text.titleCase(),
               style: TextStyle(
                 color: menuColor,
               ),
