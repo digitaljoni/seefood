@@ -9,11 +9,13 @@ part 'recipe_details_state.dart';
 
 class RecipeDetailsCubit extends Cubit<RecipeDetailsState> {
   RecipeDetailsCubit({
-    required this.id,
+    required this.initalRecipe,
     required this.recipeRepository,
-  }) : super(const RecipeDetailsState());
+  }) : super(
+          RecipeDetailsState(recipe: initalRecipe),
+        );
 
-  final String id;
+  final Recipe initalRecipe;
   final RecipeRepository recipeRepository;
 
   Future<void> getRecipe() async {
@@ -24,7 +26,8 @@ class RecipeDetailsCubit extends Cubit<RecipeDetailsState> {
     );
 
     try {
-      final recipe = await recipeRepository.fetchRecipeById(id: id);
+      final recipe =
+          await recipeRepository.fetchRecipeById(id: initalRecipe.id);
 
       emit(
         state.copyWith(

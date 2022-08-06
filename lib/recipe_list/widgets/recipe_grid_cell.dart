@@ -19,7 +19,7 @@ class RecipeGridCell extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           RecipeDetailsPage.route(
-            id: recipe.id,
+            initalRecipe: recipe,
           ),
         ),
         child: Stack(

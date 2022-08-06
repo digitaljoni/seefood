@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:seefood/common/common.dart';
 import 'package:seefood/config/config.dart';
@@ -35,11 +33,12 @@ class _RecipeDetailsTabState extends State<RecipeDetailsTab> {
       children: [
         DecoratedBox(
           decoration: const BoxDecoration(
-              border: Border(
-            bottom: BorderSide(
-              color: Colors.white30,
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.white30,
+              ),
             ),
-          )),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -65,7 +64,7 @@ class _RecipeDetailsTabState extends State<RecipeDetailsTab> {
         Expanded(
           child: IndexedStack(
             index: index,
-            children: [
+            children: const [
               _Instructions(),
               _Ingredients(),
             ],

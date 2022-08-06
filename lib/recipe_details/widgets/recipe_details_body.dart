@@ -16,13 +16,35 @@ class RecipeDetailsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RecipeDetailsCubit, RecipeDetailsState>(
       builder: (context, state) {
+        final recipe = state.recipe;
+
         if (state.isLoading) {
-          return const Center(
-            child: Loading(),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RecipeImage(
+                id: recipe.id,
+                imageUrl: recipe.imageUrl,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 16,
+                  left: 16,
+                  right: 16,
+                ),
+                child: Text(
+                  recipe.name,
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+              ),
+              const Expanded(
+                child: Center(
+                  child: Loading(),
+                ),
+              ),
+            ],
           );
         }
-
-        final recipe = state.recipe;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
