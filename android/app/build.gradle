@@ -87,9 +87,11 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt')
+            manifestPlaceholders = [appName: "SeeFood"]
         }
         debug {
             signingConfig signingConfigs.debug
+            manifestPlaceholders = [appName: "SeeFood"]
         }
     }
 }
