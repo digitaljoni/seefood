@@ -15,9 +15,8 @@ class RecipeListPage extends StatelessWidget {
   static Route<dynamic> route({
     required Filter filter,
   }) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          RepositoryProvider<Filter>.value(
+    return MaterialPageRoute(
+      builder: (context) => RepositoryProvider<Filter>.value(
         value: filter,
         child: const RecipeListPage(),
       ),

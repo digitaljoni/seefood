@@ -29,8 +29,10 @@ class Recipe extends Equatable {
 
   /// Helper function that creates a [Recipe] from [RecipeDto]
   factory Recipe.fromDto(RecipeDto recipeDto) {
-    final tags = recipeDto.strTags.split(',');
-    final instructions = recipeDto.strInstructions.split('\r\n');
+    final tags = recipeDto.strTags.split(',')..removeWhere((tag) => tag == '');
+
+    final instructions = recipeDto.strInstructions.split('\r\n')
+      ..removeWhere((instruction) => instruction == '');
 
     final recipeMap = recipeDto.toJson();
 
@@ -145,4 +147,14 @@ class Recipe extends Equatable {
 
   /// Check if object is empty
   bool get isEmpty => this == empty;
+
+  /// Return thumbnail image url
+  String get thumbnailUrl => '$imageUrl/preview';
+
+  /// Ingredients List Helper
+  List<String> get ingredientsToString =>
+      ingredients.map((ingredient) => ingredient.toString()).toList();
+
+  /// check if tags is empty
+  bool get hasNoTags => tags.isEmpty || tags.first == '';
 }

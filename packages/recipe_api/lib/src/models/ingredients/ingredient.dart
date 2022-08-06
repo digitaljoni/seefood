@@ -31,4 +31,7 @@ class Ingredient extends Equatable {
 
   /// Converts this [Ingredient] into a [JsonMap].
   JsonMap toJson() => _$IngredientToJson(this);
+
+  @override
+  String toString() => '$measurement $name';
 }

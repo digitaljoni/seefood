@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seefood/common/common.dart';
 import 'package:seefood/recipe_list/cubit/cubit.dart';
+import 'package:seefood/recipe_list/recipe_list.dart';
 
 /// {@template recipe_list_body}
 /// Body of the RecipeListPage.
